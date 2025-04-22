@@ -1,0 +1,16 @@
+# macOS system files
+.DS_Store
+
+# Python cache and virtual environment files
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+
+# Logs
+*.log
