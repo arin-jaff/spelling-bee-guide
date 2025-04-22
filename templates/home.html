@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Spelling Bee Guide</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <nav class="navbar">
-        <a href="/" class="active">Home</a>
-        <a href="/how-to-play">How do you play?</a>
-        <a href="/start-solving">How should I start solving?</a>
-        <a href="/longer-words">Finding Longer Words</a>
-        <a href="/quiz">Quiz</a>
-    </nav>
+{% extends "layout.html" %}
+{% block content %}
 
-    <div class="main-content">
-        <img src="{{ url_for('static', filename='images/homepage.png') }}" class="bee-image">
-        <button class="start-button">Start</button>
-    </div>
-</body>
-</html>
+<img src="{{ url_for('static', filename='images/homepage.png') }}" class="bee-image">
+<button class="start-button">Start</button>
+
+<a href="/learn/1" class="start-button">Start</a>
+
+{% endblock %}

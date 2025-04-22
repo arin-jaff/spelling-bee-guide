@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spelling Bee Guide</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="active">Home</a>
+        <a href="/how-to-play">How do you play?</a>
+        <a href="/start-solving">How should I start solving?</a>
+        <a href="/longer-words">Finding Longer Words</a>
+        <a href="/quiz">Quiz</a>
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
