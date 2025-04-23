@@ -2,6 +2,8 @@
 {% block content %}
 
 <div class="learn-container">
+    <h2 class="lesson-title">{{ lesson_data.id }}. {{ lesson_data.title|default('Spelling Bee Guide') }}</h2>
+
     <div class="content-row">
         {% if lesson_data.id|int > 2 and 10 > lesson_data.id|int %}
         <div class="hex-pattern">
@@ -21,7 +23,8 @@
         </div>
         {% endif %}
         
-        <div class="lesson-text">
+        <!-- Replace the standard lesson-text with our interactive content -->
+        <div class="lesson-content">
             {{ lesson_data.data }}
         </div>
     </div>
@@ -43,6 +46,13 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+}
+
+.lesson-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 600;
 }
 
 .content-row {
@@ -86,19 +96,16 @@
     background-color: #add8e6;
 }
 
-.lesson-text {
+.lesson-content {
     flex: 1;
-    max-width: 600px;
-    font-size: 18px;
-    line-height: 1.6;
-    text-align: center;
+    max-width: 800px;
 }
 
 .navigation-buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .nav-button {
@@ -109,10 +116,22 @@
     color: black;
     border-radius: 4px;
     font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 .nav-button:hover {
     background-color: #add8e6;
+    transform: scale(1.05);
+}
+
+/* animation for load */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.learn-container {
+    animation: fadeIn 0.6s ease;
 }
 </style>
 {% endblock %}

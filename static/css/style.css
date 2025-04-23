@@ -83,3 +83,107 @@ body {
 .hex-btns-container {
     vertical-align: center;
 }
+
+/* card for texts */
+.interactive-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.interactive-card {
+    position: relative;
+    width: 220px;
+    min-height: 150px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.interactive-card:hover, .interactive-card.expanded, .interactive-card.active {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    background-color: #fff;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.interactive-card:hover .card-icon,
+.interactive-card.expanded .card-icon,
+.interactive-card.active .card-icon {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.card-content {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.interactive-card:hover .card-content,
+.interactive-card.expanded .card-content,
+.interactive-card.active .card-content {
+    opacity: 1;
+    font-size: 17px;
+}
+
+/* effect for card */
+.interactive-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ffd700, #ffb700);
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: transform 0.3s ease;
+}
+
+.interactive-card:hover::before,
+.interactive-card.expanded::before,
+.interactive-card.active::before {
+    transform: scaleX(1);
+}
+
+@media (max-width: 768px) {
+    .interactive-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .interactive-card {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+/* animation for card expansion */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.interactive-card:hover,
+.interactive-card.expanded,
+.interactive-card.active {
+    animation: pulse 1s ease;
+}

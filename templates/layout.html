@@ -2,23 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spelling Bee Guide</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script type="text/javascript" src="{{ url_for('static', filename = 'js/main.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
-        <a href="/">Home</a>
-        <a href="/learn/1">How do you play?</a>
-        <a href="/learn/2">How should I start solving?</a>
-        <a href="/learn/3">Finding Longer Words</a>
-        <a href="/quiz">Quiz</a>
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/learn/1" class="nav-link"><i class="fas fa-question-circle"></i> How do you play?</a>
+        <a href="/learn/2" class="nav-link"><i class="fas fa-lightbulb"></i> How should I start solving?</a>
+        <a href="/learn/3" class="nav-link"><i class="fas fa-pen-fancy"></i> Finding Longer Words</a>
+        <a href="/quiz" class="nav-link"><i class="fas fa-tasks"></i> Quiz</a>
     </nav>
 
     <div class="container mt-4">
         {% block content %}
         {% endblock %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+    
+    <!-- global styles -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background-color: #ffce44;
+            padding: 15px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #000;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link i {
+            margin-right: 5px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    </style>
 </body>
 </html>
