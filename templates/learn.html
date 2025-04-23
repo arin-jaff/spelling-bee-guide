@@ -30,7 +30,11 @@
         {% if prev_lesson %}
         <a href="/learn/{{prev_lesson}}" class="nav-button">Previous</a>
         {% endif %}
+        {% if next_lesson %}
         <a href="/learn/{{next_lesson}}" class="nav-button">Next</a>
+        {% else %}
+        <a href="/quiz" class="nav-button">Take Quiz</a>
+        {% endif %}
     </div>
 </div>
 

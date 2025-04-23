@@ -111,19 +111,15 @@ def learn(lesson_num):
     ids = [l["id"] for l in lessons]
     current_index = ids.index(lesson_num)
 
-    next_lesson = lessons[current_index + 1]["id"] if current_index + 1 < len(lessons) else 'quiz'
+    next_lesson = lessons[current_index + 1]["id"] if current_index + 1 < len(lessons) else None
     prev_lesson = lessons[current_index - 1]["id"] if current_index > 0 else None
 
     return render_template('learn.html', lesson_data=lesson_data, next_lesson=next_lesson, prev_lesson=prev_lesson, lessons=lessons)
 
-@app.route('/learn/quiz')
+@app.route('/quiz')
 def quiz_home():
     game_state = get_game_state()
     return render_template('quiz.html', game_state=game_state)
-
-@app.route('/quiz/<int:question_num>')
-def quiz(question_num):
-    return redirect(url_for('quiz_home'))
 
 @app.route('/update_game_state', methods=['POST'])
 def update_game_state():
