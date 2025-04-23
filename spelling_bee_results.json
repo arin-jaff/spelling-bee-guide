@@ -14,5 +14,15 @@
       "stun"
     ],
     "timeLeft": 135
+  },
+  {
+    "timestamp": "2025-04-23T01:30:32.775Z",
+    "score": 23,
+    "wordsFound": [
+      "solution",
+      "intuit",
+      "intuition"
+    ],
+    "timeLeft": 0
   }
 ]

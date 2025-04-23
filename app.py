@@ -71,28 +71,27 @@ def clear_game_state():
 
 lessons = [
     {"id":1,
-     "data": " "},
+     "data": "The New York Times Spelling Bee is a daily word game similar to the Wordle. You are provided with 7 letters: 6 normal letters, and one central core letter in yellow. Your goal is to make as many words as possible."},
     {"id":2,
-     "data": " "},
+     "data": "While making words with the given layout, you have one defining rule: The core letter must be included in every word you make. As you make more and more words, you earn points. earn enough points, and you earn the reward rank of GENIUS!"},
     {"id":3,
-     "data": " "},
+     "data": "All of your words must be more than 4 letters, so you can’t just brute force small words"},
     {"id":4,
-     "data": " "},
+     "data": "Start small 4-5 letter words – think about the center letter, and what other letters it pairs well with"},
     {"id":5,
-     "data": " "},
+     "data": "Think about common word endings to potentially more than *double* your total points! Look out for: -ed, -ing, -ion, -est -er, -ment, -able, etc."},
     {"id":6,
-     "data": " "},
+     "data": "Don’t forget common word beginnings too!  This can be combined with endings for many different combinations! Look out for: non-, con-, un-, in-, or even ch-, hee- etc."},
     {"id":7,
-     "data": " "},
+     "data": "Try combining words to form compound words — a sneaky way to hit all 7 letters."},
     {"id":8,
-     "data": " "},
+     "data": "Don’t give up! Keep thinking, sound out beginnings of words, and be persistent!"},
     {"id":9,
-     "data": " "},
+     "data": "Look for prefixes and suffixes. When you want to reveal the pangrams, go to the next slide"},
     {"id":10,
-     "data": " "},
-    {"id":11,
-     "data": " "}
+     "data": "How could I have approached this? Finding the prefix -tion – now what letters are left? (s,u,l). From this, I found solution! Think about suffixes – il-, son-, un- are all present."},
 ]
+
 
 @app.route('/')
 def home():
@@ -110,15 +109,14 @@ def learn(lesson_num):
 
     # Find next lesson by ID
     ids = [l["id"] for l in lessons]
-    try:
-        current_index = ids.index(lesson_num)
-        next_lesson = lessons[current_index + 1]["id"]
-    except IndexError:
-        next_lesson = 'quiz/1'  # No more lessons
+    current_index = ids.index(lesson_num)
 
-    return render_template('learn.html', lesson_data=lesson_data, next_lesson=next_lesson, lessons=lessons)
+    next_lesson = lessons[current_index + 1]["id"] if current_index + 1 < len(lessons) else 'quiz'
+    prev_lesson = lessons[current_index - 1]["id"] if current_index > 0 else None
 
-@app.route('/quiz')
+    return render_template('learn.html', lesson_data=lesson_data, next_lesson=next_lesson, prev_lesson=prev_lesson, lessons=lessons)
+
+@app.route('/learn/quiz')
 def quiz_home():
     game_state = get_game_state()
     return render_template('quiz.html', game_state=game_state)

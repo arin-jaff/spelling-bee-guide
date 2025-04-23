@@ -14,5 +14,317 @@
   {
     "timestamp": "2025-04-22T20:32:44.253033",
     "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:27:51.756394",
+    "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:27:55.083202",
+    "lesson_num": 2
+  },
+  {
+    "timestamp": "2025-04-22T21:27:56.255273",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:28:08.396172",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:28:09.093410",
+    "lesson_num": 5
+  },
+  {
+    "timestamp": "2025-04-22T21:28:53.446431",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:28:54.544910",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:28:55.032971",
+    "lesson_num": 2
+  },
+  {
+    "timestamp": "2025-04-22T21:28:55.608969",
+    "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:28:56.566319",
+    "lesson_num": 2
+  },
+  {
+    "timestamp": "2025-04-22T21:28:57.927108",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:28:59.070413",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:28:59.602920",
+    "lesson_num": 5
+  },
+  {
+    "timestamp": "2025-04-22T21:29:01.385789",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:29:02.032730",
+    "lesson_num": 7
+  },
+  {
+    "timestamp": "2025-04-22T21:29:02.621052",
+    "lesson_num": 8
+  },
+  {
+    "timestamp": "2025-04-22T21:29:03.324973",
+    "lesson_num": 9
+  },
+  {
+    "timestamp": "2025-04-22T21:29:04.207418",
+    "lesson_num": 10
+  },
+  {
+    "timestamp": "2025-04-22T21:30:14.670754",
+    "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:30:15.920221",
+    "lesson_num": 2
+  },
+  {
+    "timestamp": "2025-04-22T21:30:16.717635",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:30:17.342428",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:30:19.184105",
+    "lesson_num": 5
+  },
+  {
+    "timestamp": "2025-04-22T21:30:20.789322",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:30:21.639142",
+    "lesson_num": 7
+  },
+  {
+    "timestamp": "2025-04-22T21:30:22.477116",
+    "lesson_num": 8
+  },
+  {
+    "timestamp": "2025-04-22T21:30:23.170696",
+    "lesson_num": 9
+  },
+  {
+    "timestamp": "2025-04-22T21:30:24.182477",
+    "lesson_num": 10
+  },
+  {
+    "timestamp": "2025-04-22T21:32:19.732808",
+    "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:32:20.848752",
+    "lesson_num": 2
+  },
+  {
+    "timestamp": "2025-04-22T21:32:21.867378",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:32:25.606979",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:32:26.070394",
+    "lesson_num": 5
+  },
+  {
+    "timestamp": "2025-04-22T21:32:26.575728",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:32:27.200197",
+    "lesson_num": 7
+  },
+  {
+    "timestamp": "2025-04-22T21:33:30.301536",
+    "lesson_num": 7
+  },
+  {
+    "timestamp": "2025-04-22T21:33:33.585558",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:33:34.327831",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:33:34.949416",
+    "lesson_num": 5
+  },
+  {
+    "timestamp": "2025-04-22T21:33:35.499295",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:33:36.171092",
+    "lesson_num": 7
+  },
+  {
+    "timestamp": "2025-04-22T21:33:36.690670",
+    "lesson_num": 8
+  },
+  {
+    "timestamp": "2025-04-22T21:33:37.223986",
+    "lesson_num": 9
+  },
+  {
+    "timestamp": "2025-04-22T21:33:38.380709",
+    "lesson_num": 10
+  },
+  {
+    "timestamp": "2025-04-22T21:33:51.872860",
+    "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:33:52.691664",
+    "lesson_num": 2
+  },
+  {
+    "timestamp": "2025-04-22T21:33:53.646372",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:33:55.620561",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:33:56.432992",
+    "lesson_num": 5
+  },
+  {
+    "timestamp": "2025-04-22T21:33:56.996299",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:33:57.667686",
+    "lesson_num": 7
+  },
+  {
+    "timestamp": "2025-04-22T21:33:58.228193",
+    "lesson_num": 8
+  },
+  {
+    "timestamp": "2025-04-22T21:33:59.101919",
+    "lesson_num": 9
+  },
+  {
+    "timestamp": "2025-04-22T21:34:01.570467",
+    "lesson_num": 10
+  },
+  {
+    "timestamp": "2025-04-22T21:34:39.132551",
+    "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:34:40.062253",
+    "lesson_num": 2
+  },
+  {
+    "timestamp": "2025-04-22T21:34:41.933214",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:34:43.496435",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:34:44.127163",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:34:44.687553",
+    "lesson_num": 8
+  },
+  {
+    "timestamp": "2025-04-22T21:34:45.295358",
+    "lesson_num": 5
+  },
+  {
+    "timestamp": "2025-04-22T21:34:45.957810",
+    "lesson_num": 7
+  },
+  {
+    "timestamp": "2025-04-22T21:34:46.450436",
+    "lesson_num": 9
+  },
+  {
+    "timestamp": "2025-04-22T21:34:47.230088",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:34:47.692081",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:35:31.548311",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:35:34.011442",
+    "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:37:46.827389",
+    "lesson_num": 1
+  },
+  {
+    "timestamp": "2025-04-22T21:37:47.929645",
+    "lesson_num": 2
+  },
+  {
+    "timestamp": "2025-04-22T21:37:48.728936",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:41:15.348683",
+    "lesson_num": 3
+  },
+  {
+    "timestamp": "2025-04-22T21:41:16.340737",
+    "lesson_num": 4
+  },
+  {
+    "timestamp": "2025-04-22T21:41:17.881099",
+    "lesson_num": 5
+  },
+  {
+    "timestamp": "2025-04-22T21:41:18.543374",
+    "lesson_num": 6
+  },
+  {
+    "timestamp": "2025-04-22T21:41:19.037382",
+    "lesson_num": 7
+  },
+  {
+    "timestamp": "2025-04-22T21:41:20.583863",
+    "lesson_num": 8
+  },
+  {
+    "timestamp": "2025-04-22T21:41:21.116406",
+    "lesson_num": 9
+  },
+  {
+    "timestamp": "2025-04-22T21:41:22.427855",
+    "lesson_num": 10
   }
 ]

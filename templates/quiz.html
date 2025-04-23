@@ -32,6 +32,7 @@
     <div class="input-container">
         <input type="text" id="word-input" placeholder="Type your word...">
         <button id="submit-word">Submit</button>
+        <div id="error-message" class="error-message"></div>
     </div>
 
     <div class="found-words">
@@ -179,6 +180,22 @@
 
 .end-quiz-button:hover {
     background-color: #add8e6;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 16px;
+    margin-top: 10px;
+    min-height: 20px;
+    transition: opacity 0.3s;
+}
+
+.error-message.show {
+    opacity: 1;
+}
+
+.error-message.hide {
+    opacity: 0;
 }
 </style>
 
@@ -359,13 +376,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     document.getElementById('submit-word').addEventListener('click', function() {
         const wordInput = document.getElementById('word-input');
+        const errorMessage = document.getElementById('error-message');
         const word = wordInput.value.toLowerCase();
         
         if (isValidWord(word)) {
             addWord(word);
             wordInput.value = '';
+            errorMessage.textContent = '';
+            errorMessage.classList.remove('show');
+            errorMessage.classList.add('hide');
         } else {
-            alert('Invalid word! Words must be at least 4 letters, contain the letter U, and only use the given letters.');
+            errorMessage.textContent = 'Invalid word! Words must be at least 4 letters, contain the letter U, and only use the given letters.';
+            errorMessage.classList.remove('hide');
+            errorMessage.classList.add('show');
         }
     });
     
