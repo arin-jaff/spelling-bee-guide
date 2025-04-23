@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<script>
+    let lessons = JSON.parse('{{ lessons | tojson | safe }}');
+</script>
+
+<div>{{ lesson_data.id }}</div>
+
+{% endblock %}
