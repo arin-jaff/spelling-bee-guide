@@ -1,0 +1,382 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="spelling-bee-container">
+    <div class="timer-container">
+        <div id="timer">5:00</div>
+        <button id="end-quiz" class="end-quiz-button">End Quiz</button>
+    </div>
+    
+    {% if game_ended %}
+    <div class="congrats-message">
+        <h1>Congrats! Your score was <span id="final-score">{{ game_state.score }}</span></h1>
+    </div>
+    {% endif %}
+    
+    <div class="honeycomb">
+        <div class="hex-row">
+            <div class="hex" data-letter="S">S</div>
+            <div class="hex" data-letter="L">L</div>
+        </div>
+        <div class="hex-row">
+            <div class="hex" data-letter="O">O</div>
+            <div class="hex center-hex" data-letter="U">U</div>
+            <div class="hex" data-letter="T">T</div>
+        </div>
+        <div class="hex-row">
+            <div class="hex" data-letter="I">I</div>
+            <div class="hex" data-letter="N">N</div>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <input type="text" id="word-input" placeholder="Type your word...">
+        <button id="submit-word">Submit</button>
+    </div>
+
+    <div class="found-words">
+        <h3>Found Words:</h3>
+        <div id="word-list"></div>
+    </div>
+
+    <div class="score-container">
+        <h3>Score: <span id="score">0</span></h3>
+    </div>
+</div>
+
+<style>
+.spelling-bee-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.timer-container {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.honeycomb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.hex-row {
+    display: flex;
+    justify-content: center;
+    margin: -10px 0;
+}
+
+.hex {
+    width: 80px;
+    height: 80px;
+    background-color: #ffd700;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: transform 0.2s;
+}
+
+.hex:hover {
+    transform: scale(1.1);
+}
+
+.center-hex {
+    background-color: #ffa500;
+}
+
+.input-container {
+    margin: 20px 0;
+}
+
+#word-input {
+    padding: 10px;
+    font-size: 18px;
+    width: 200px;
+    margin-right: 10px;
+}
+
+#submit-word {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#submit-word:hover {
+    background-color: #45a049;
+}
+
+.found-words {
+    margin: 20px 0;
+    text-align: left;
+}
+
+#word-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.word-item {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.score-container {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.congrats-message {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.congrats-message h1 {
+    font-size: 32px;
+    color: #333;
+    margin: 0;
+}
+
+#final-score {
+    color: #4CAF50;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.end-quiz-button {
+    font-size: 18px;
+    padding: 8px 16px;
+    background-color: lightblue;
+    border: 2px solid black;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.end-quiz-button:hover {
+    background-color: #add8e6;
+}
+</style>
+
+<script>
+let timer;
+let timeLeft = 300; // 5 minutes in seconds
+let foundWords = [];
+let score = 0;
+let validWords = [];
+const validLetters = ['S', 'O', 'L', 'U', 'T', 'I', 'N'];
+const centerLetter = 'U';
+
+// Load the word list when the page loads
+async function loadWordList() {
+    try {
+        const response = await fetch('/static/word_list.json');
+        const data = await response.json();
+        validWords = data.words.map(word => word.toLowerCase());
+    } catch (error) {
+        console.error('Error loading word list:', error);
+    }
+}
+
+function calculateTimeLeft(startTime) {
+    if (!startTime) return 300;
+    const start = new Date(startTime);
+    const now = new Date();
+    const elapsed = Math.floor((now - start) / 1000);
+    return Math.max(0, 300 - elapsed);
+}
+
+function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    document.getElementById('timer').textContent = 
+        `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    if (timeLeft <= 0) {
+        clearInterval(timer);
+        endGame();
+    }
+    timeLeft--;
+}
+
+function startTimer() {
+    timer = setInterval(updateTimer, 1000);
+}
+
+function endGame() {
+    document.getElementById('word-input').disabled = true;
+    document.getElementById('submit-word').disabled = true;
+    alert('Time\'s up! Game over.');
+    
+    // Save final results and clear game state
+    const gameData = {
+        timestamp: new Date().toISOString(),
+        score: score,
+        wordsFound: foundWords,
+        timeLeft: timeLeft
+    };
+    
+    fetch('/end_game', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(gameData)
+    });
+}
+
+function isValidWord(word) {
+    // Check if word is at least 4 letters
+    if (word.length < 4) return false;
+    
+    // Check if word contains center letter
+    if (!word.includes(centerLetter.toLowerCase())) return false;
+    
+    // Check if word only uses valid letters
+    const wordLetters = word.toLowerCase().split('');
+    if (!wordLetters.every(letter => validLetters.includes(letter.toUpperCase()))) {
+        return false;
+    }
+    
+    // Check if word is in the valid word list
+    return validWords.includes(word.toLowerCase());
+}
+
+function addWord(word) {
+    if (!foundWords.includes(word)) {
+        foundWords.push(word);
+        const wordList = document.getElementById('word-list');
+        const wordItem = document.createElement('div');
+        wordItem.className = 'word-item';
+        wordItem.textContent = word;
+        wordList.appendChild(wordItem);
+        
+        // Update score (1 point per letter)
+        score += word.length;
+        document.getElementById('score').textContent = score;
+        
+        // Save game state
+        saveGameState();
+    }
+}
+
+function saveGameState() {
+    const gameData = {
+        foundWords: foundWords,
+        score: score
+    };
+    
+    fetch('/update_game_state', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(gameData)
+    });
+}
+
+function loadGameState() {
+    const gameState = {{ game_state|tojson|safe }};
+    if (gameState.start_time) {
+        timeLeft = calculateTimeLeft(gameState.start_time);
+        foundWords = gameState.found_words;
+        score = gameState.score;
+        
+        // Display found words
+        const wordList = document.getElementById('word-list');
+        foundWords.forEach(word => {
+            const wordItem = document.createElement('div');
+            wordItem.className = 'word-item';
+            wordItem.textContent = word;
+            wordList.appendChild(wordItem);
+        });
+        
+        // Update score
+        document.getElementById('score').textContent = score;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadWordList();
+    
+    {% if not game_ended %}
+    startTimer();
+    loadGameState();
+    
+    // Add event listener for End Quiz button
+    document.getElementById('end-quiz').addEventListener('click', function() {
+        window.location.href = '/end-quiz';
+    });
+    {% else %}
+    // Display final state
+    const gameState = {{ game_state|tojson|safe }};
+    foundWords = gameState.found_words || [];
+    score = gameState.score || 0;
+    
+    // Display found words
+    const wordList = document.getElementById('word-list');
+    foundWords.forEach(word => {
+        const wordItem = document.createElement('div');
+        wordItem.className = 'word-item';
+        wordItem.textContent = word;
+        wordList.appendChild(wordItem);
+    });
+    
+    // Update score
+    document.getElementById('score').textContent = score;
+    {% endif %}
+    
+    // Add event listener for Enter key
+    document.getElementById('word-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            document.getElementById('submit-word').click();
+        }
+    });
+    
+    document.getElementById('submit-word').addEventListener('click', function() {
+        const wordInput = document.getElementById('word-input');
+        const word = wordInput.value.toLowerCase();
+        
+        if (isValidWord(word)) {
+            addWord(word);
+            wordInput.value = '';
+        } else {
+            alert('Invalid word! Words must be at least 4 letters, contain the letter U, and only use the given letters.');
+        }
+    });
+    
+    // Add click event listeners to hexagons
+    document.querySelectorAll('.hex').forEach(hex => {
+        hex.addEventListener('click', function() {
+            const letter = this.getAttribute('data-letter');
+            const wordInput = document.getElementById('word-input');
+            wordInput.value += letter.toLowerCase();
+        });
+    });
+});
+</script>
+{% endblock %}
