@@ -247,7 +247,6 @@ function startTimer() {
 function endGame() {
     document.getElementById('word-input').disabled = true;
     document.getElementById('submit-word').disabled = true;
-    alert('Time\'s up! Game over.');
     
     // Save final results and clear game state
     const gameData = {
@@ -263,6 +262,8 @@ function endGame() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(gameData)
+    }).then(() => {
+        window.location.href = '/end-quiz';
     });
 }
 
