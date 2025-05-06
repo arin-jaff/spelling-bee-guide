@@ -78,22 +78,25 @@
 .hex {
     width: 60px;
     height: 60px;
-    background-color: lightblue;
+    background-color: #e0e0e0;  /* Light gray for all hexagons */
     margin: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: black;
+    color: #333;
     font-weight: bold;
-    border: 2px solid black;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transition: transform 0.2s;
 }
 
 .hex:hover {
     transform: scale(1.1);
-    background-color: #add8e6;
+}
+
+/* Only the hexagon numbered 4 (second hex in the second row) is yellow */
+.hex-row:nth-child(2) .hex:nth-child(2) {
+    background-color: #ffd700;
 }
 
 .lesson-content {
