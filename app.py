@@ -99,7 +99,7 @@ lessons = [
      "data": "Look for prefixes and suffixes. When you want to reveal the pangrams, go to the next slide"},
     {"id": 10,
      "title": "Expert Tips",
-     "data": "How could I have approached this? Finding the prefix -tion – now what letters are left? (s,u,l). From this, I found solution! Think about suffixes – il-, son-, un- are all present."},
+     "data": "How could I have approached this? First: Finding the suffix -TION! Now what letters are left? (s,u,l). From this, I found SOLUTION! Think about common prefixes and suffixes: il-, un-, non-, -ist are all present."},
 ]
 
 

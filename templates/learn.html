@@ -5,22 +5,40 @@
     <h2 class="lesson-title">{{ lesson_data.id }}. {{ lesson_data.title|default('Spelling Bee Guide') }}</h2>
 
     <div class="content-row">
-        {% if lesson_data.id|int > 2 and 10 > lesson_data.id|int %}
-        <div class="hex-pattern">
-            <div class="hex-row">
-                <a href="/learn/3" class="hex">1</a>
-                <a href="/learn/4" class="hex">2</a>
+        {% if lesson_data.id|int > 2 and lesson_data.id|int <= 10 %}
+            {% if lesson_data.id|int == 10 %}
+            <div class="hex-pattern">
+                <div class="hex-row">
+                    <div class="hex">S</div>
+                    <div class="hex">L</div>
+                </div>
+                <div class="hex-row">
+                    <div class="hex">O</div>
+                    <div class="hex center-hex">U</div>
+                    <div class="hex">T</div>
+                </div>
+                <div class="hex-row">
+                    <div class="hex">I</div>
+                    <div class="hex">N</div>
+                </div>
             </div>
-            <div class="hex-row">
-                <a href="/learn/5" class="hex">3</a>
-                <a href="/learn/6" class="hex">4</a>
-                <a href="/learn/7" class="hex">5</a>
+            {% else %}
+            <div class="hex-pattern">
+                <div class="hex-row">
+                    <a href="/learn/3" class="hex">1</a>
+                    <a href="/learn/4" class="hex">2</a>
+                </div>
+                <div class="hex-row">
+                    <a href="/learn/5" class="hex">3</a>
+                    <a href="/learn/6" class="hex">4</a>
+                    <a href="/learn/7" class="hex">5</a>
+                </div>
+                <div class="hex-row">
+                    <a href="/learn/8" class="hex">6</a>
+                    <a href="/learn/9" class="hex">7</a>
+                </div>
             </div>
-            <div class="hex-row">
-                <a href="/learn/8" class="hex">6</a>
-                <a href="/learn/9" class="hex">7</a>
-            </div>
-        </div>
+            {% endif %}
         {% endif %}
         
         <!-- Replace the standard lesson-text with our interactive content -->
