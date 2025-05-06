@@ -71,35 +71,54 @@ def clear_game_state():
 
 lessons = [
     {"id": 1,
-     "title": "Introduction to Spelling Bee",
-     "data": "The New York Times Spelling Bee is a daily word game similar to the Wordle. You are provided with 7 letters: 6 normal letters, and one central core letter in yellow. Your goal is to make as many words as possible."},
+     "title": "How to Play",
+     "data": "Welcome to the Spelling Bee! The goal is to make words using the letters in the honeycomb. Each word must be at least 4 letters long and the center letter must be used in every word. Letters can be reused! Proper nouns and hyphenated words are not allowed.",
+     "image": None},
+    
     {"id": 2,
-     "title": "Basic Rules",
-     "data": "While making words with the given layout, you have one defining rule: The core letter must be included in every word you make. As you make more and more words, you earn points. earn enough points, and you earn the reward rank of GENIUS!"},
+     "title": "Getting Started",
+     "data": "Start by looking for common prefixes and suffixes. Words ending in -ING, -ED, -ER, -EST are often good choices.",
+     "image": "lesson-2.png"},
+    
     {"id": 3,
-     "title": "Word Length Rules",
-     "data": "All of your words must be more than 4 letters, so you can't just brute force small words"},
+     "title": "Finding Longer Words",
+     "data": "Longer words are worth more points! Look for words that combine multiple prefixes and suffixes. For example, if you see -ING and -ER, you might find words like 'running' or 'jumping'.",
+     "image": "lesson-3.png"},
+    
     {"id": 4,
-     "title": "Starting Strategy",
-     "data": "Start small 4-5 letter words – think about the center letter, and what other letters it pairs well with"},
+     "title": "Common Patterns",
+     "data": "Watch for common word beginnings like: NON-, UN-, CON- \n These can help you spot words quickly. Also look for compound words that combine two smaller words.",
+     "image": "lesson-4.png"},
+    
     {"id": 5,
-     "title": "Word Endings",
-     "data": "Think about common word endings to potentially more than *double* your total points! Look out for: -ed, -ing, -ion, -est -er, -ment, -able, etc."},
+     "title": "Advanced Strategies",
+     "data": "Try to find words that use the same letters in different combinations. For example, if you find 'STAR', you might also find 'RATS' or 'ARTS'.",
+     "image": None},
+    
     {"id": 6,
-     "title": "Word Beginnings",
-     "data": "Don't forget common word beginnings too! This can be combined with endings for many different combinations! Look out for: non-, con-, un-, in-, or even ch-, hee- etc."},
+     "title": "Word Families",
+     "data": "Look for word families - groups of words that share the same root. For example, if you find 'PLAY', you might also find 'PLAYS', 'PLAYED', 'PLAYING', 'PLAYER'.",
+     "image": None},
+    
     {"id": 7,
-     "title": "Compound Words",
-     "data": "Try combining words to form compound words — a sneaky way to hit all 7 letters."},
+     "title": "Time Management",
+     "data": "Don't spend too long on any one word. If you're stuck, move on and come back later. Sometimes a fresh look helps spot words you missed before.",
+     "image": None},
+    
     {"id": 8,
-     "title": "Persistence",
-     "data": "Don't give up! Keep thinking, sound out beginnings of words, and be persistent!"},
+     "title": "Common Mistakes",
+     "data": "Watch out for proper nouns and hyphenated words - they're not allowed. Also remember that the center letter must be used in every word. Don't forget to check your spelling!",
+     "image": None},
+    
     {"id": 9,
-     "title": "Advanced Strategy",
-     "data": "Look for prefixes and suffixes. When you want to reveal the pangrams, go to the next slide"},
+     "title": "Practice Tips",
+     "data": "The best way to improve is to practice regularly. Try to play at least one game each day. Keep track of the words you find to build your vocabulary.",
+     "image": "lesson-9.png"},
+    
     {"id": 10,
      "title": "Expert Tips",
-     "data": "How could I have approached this? First: Finding the suffix -TION! Now what letters are left? (s,u,l). From this, I found SOLUTION! Think about common prefixes and suffixes: il-, un-, non-, -ist are all present."},
+     "data": "How could I have approached this? First: Finding the suffix -TION! Now what letters are left? (s,u,l). From this, I found SOLUTION! Think about common prefixes and suffixes: il-, un-, non-, -ist are all present.",
+     "image": None},
 ]
 
 
