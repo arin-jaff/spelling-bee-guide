@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="spelling-bee-container">
+<div class="spelling-bee-container" data-valid-words='{{ valid_words|tojson|safe }}' data-game-state='{{ game_state|tojson|safe }}'>
     <div class="timer-container">
         <div id="timer">5:00</div>
         <button id="end-quiz" class="end-quiz-button">End Quiz</button>
@@ -79,7 +79,7 @@
 .hex {
     width: 80px;
     height: 80px;
-    background-color: #ffd700;
+    background-color: #e0e0e0;
     margin: 0 5px;
     display: flex;
     align-items: center;
@@ -97,7 +97,7 @@
 }
 
 .center-hex {
-    background-color: #ffa500;
+    background-color: #ffd700;
 }
 
 .input-container {
@@ -114,15 +114,15 @@
 #submit-word {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    background-color: lightblue;
+    color: black;
+    border: 2px solid black;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 #submit-word:hover {
-    background-color: #45a049;
+    background-color: #add8e6;
 }
 
 .found-words {
@@ -204,20 +204,9 @@ let timer;
 let timeLeft = 300; // 5 minutes in seconds
 let foundWords = [];
 let score = 0;
-let validWords = [];
+let validWords = JSON.parse(document.querySelector('.spelling-bee-container').dataset.validWords);
 const validLetters = ['S', 'O', 'L', 'U', 'T', 'I', 'N'];
 const centerLetter = 'U';
-
-// Load the word list when the page loads
-async function loadWordList() {
-    try {
-        const response = await fetch('/static/word_list.json');
-        const data = await response.json();
-        validWords = data.words.map(word => word.toLowerCase());
-    } catch (error) {
-        console.error('Error loading word list:', error);
-    }
-}
 
 function calculateTimeLeft(startTime) {
     if (!startTime) return 300;
@@ -318,7 +307,7 @@ function saveGameState() {
 }
 
 function loadGameState() {
-    const gameState = {{ game_state|tojson|safe }};
+    const gameState = JSON.parse(document.querySelector('.spelling-bee-container').dataset.gameState);
     if (gameState.start_time) {
         timeLeft = calculateTimeLeft(gameState.start_time);
         foundWords = gameState.found_words;
@@ -338,9 +327,7 @@ function loadGameState() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', async function() {
-    await loadWordList();
-    
+document.addEventListener('DOMContentLoaded', function() {
     {% if not game_ended %}
     startTimer();
     loadGameState();
@@ -351,7 +338,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
     {% else %}
     // Display final state
-    const gameState = {{ game_state|tojson|safe }};
+    const gameState = JSON.parse(document.querySelector('.spelling-bee-container').dataset.gameState);
     foundWords = gameState.found_words || [];
     score = gameState.score || 0;
     
