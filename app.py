@@ -200,7 +200,8 @@ def view_logs():
 @app.route('/end-quiz')
 def end_quiz():
     game_state = get_game_state()
-    return render_template('quiz.html', game_state=game_state, game_ended=True)
+    valid_words = list(load_valid_words())
+    return render_template('quiz.html', game_state=game_state, valid_words=valid_words, game_ended=True)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
