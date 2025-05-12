@@ -81,42 +81,42 @@ lessons = [
      "image": "lesson-2.png"},
     
     {"id": 3,
-     "title": "Finding Longer Words",
+     "title": "Strategy: Finding Longer Words",
      "data": "Longer words are worth more points! Look for words that combine multiple prefixes and suffixes. For example, if you see -ING and -ER, you might find words like 'running' or 'jumping'.",
      "image": "lesson-3.png"},
     
     {"id": 4,
-     "title": "Common Patterns",
+     "title": "Strategy: Common Patterns",
      "data": "Watch for common word beginnings like: NON-, UN-, CON- \n These can help you spot words quickly. Also look for compound words that combine two smaller words.",
      "image": "lesson-4.png"},
     
     {"id": 5,
-     "title": "Advanced Strategies",
+     "title": "Strategy: Anagrams",
      "data": "Try to find words that use the same letters in different combinations. For example, if you find 'STAR', you might also find 'RATS' or 'ARTS'.",
      "image": None},
     
     {"id": 6,
-     "title": "Word Families",
+     "title": "Strategy: Word Families",
      "data": "Look for word families - groups of words that share the same root. For example, if you find 'PLAY', you might also find 'PLAYS', 'PLAYED', 'PLAYING', 'PLAYER'.",
      "image": None},
     
     {"id": 7,
-     "title": "Time Management",
+     "title": "Strategy: Time Management",
      "data": "Don't spend too long on any one word. If you're stuck, move on and come back later. Sometimes a fresh look helps spot words you missed before.",
      "image": None},
     
     {"id": 8,
-     "title": "Common Mistakes",
+     "title": "Strategy: Common Mistakes",
      "data": "Watch out for proper nouns and hyphenated words - they're not allowed. Also remember that the center letter must be used in every word. Don't forget to check your spelling!",
      "image": None},
     
     {"id": 9,
-     "title": "Practice Tips",
+     "title": "Strategy: Practice!",
      "data": "The best way to improve is to practice regularly. Try to play at least one game each day. Keep track of the words you find to build your vocabulary.",
      "image": "lesson-9.png"},
     
     {"id": 10,
-     "title": "Expert Tips",
+     "title": "Try to find the pangram! (Reveal the flashcards for the answer)",
      "data": "How could I have approached this? First: Finding the suffix -TION! Now what letters are left? (s,u,l). From this, I found SOLUTION! Think about common prefixes and suffixes: il-, un-, non-, -ist are all present.",
      "image": None},
 ]
