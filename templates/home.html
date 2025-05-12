@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<img src="{{ url_for('static', filename='images/homepage.png') }}" class="bee-image">
-
-<a href="/learn/1" class="start-button">Start</a>
+<div class="main-content">
+    <img src="{{ url_for('static', filename='images/homepage.png') }}" class="bee-image">
+    <a href="/learn/1" class="start-button">Start</a>
+</div>
 
 {% endblock %}

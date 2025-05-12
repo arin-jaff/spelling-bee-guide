@@ -34,5 +34,33 @@
       "lout"
     ],
     "timeLeft": 0
+  },
+  {
+    "timestamp": "2025-05-11T19:14:31.768Z",
+    "score": 64,
+    "wordsFound": [
+      "solution",
+      "nonsolution",
+      "illusion",
+      "illusionist",
+      "lull",
+      "soul",
+      "null",
+      "until",
+      "unlit",
+      "lout"
+    ],
+    "timeLeft": 0
+  },
+  {
+    "timestamp": "2025-05-11T19:21:03.073Z",
+    "score": 31,
+    "wordsFound": [
+      "solution",
+      "illusion",
+      "nonsolution",
+      "lout"
+    ],
+    "timeLeft": 0
   }
 ]

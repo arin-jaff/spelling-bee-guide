@@ -13,4 +13,23 @@ A web app that teaches users how to master the New York Times Spelling Bee game 
 - HTML/CSS/JavaScript
 - jQuery
 
+## 🛠️ Setup Instructions
+To run this project locally, follow these steps:
+### 1. Clone the repository
+```bash
+git clone https://github.com/arin-jaff/spelling-bee-guide.git
+```
+### 2. Install Dependencies
+Navigate to the project directory 
+
+```bash
+cd spelling-bee-guide
+pip install Flask
+```
+### 3. Run the app
+Once dependencies are installed, run the app:
+```bash
+python app.py
+```
+
 Created by Nitin, Lizzie, Lara, and Arin for UI Design Spring 2025 Final Project.

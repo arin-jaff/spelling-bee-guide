@@ -61,6 +61,15 @@ def get_game_state():
     with open(GAME_STATE_FILE, 'r') as f:
         return json.load(f)
 
+def load_valid_words():
+    valid_words = set()
+    with open('static/word_list.txt', 'r') as f:
+        for line in f:
+            word = line.strip().lower()
+            if word:  # Skip empty lines
+                valid_words.add(word)
+    return valid_words
+
 def save_game_state(state):
     with open(GAME_STATE_FILE, 'w') as f:
         json.dump(state, f, indent=2)
@@ -148,7 +157,8 @@ def learn(lesson_num):
 @app.route('/quiz')
 def quiz_home():
     game_state = get_game_state()
-    return render_template('quiz.html', game_state=game_state)
+    valid_words = list(load_valid_words())
+    return render_template('quiz.html', game_state=game_state, valid_words=valid_words)
 
 @app.route('/update_game_state', methods=['POST'])
 def update_game_state():
@@ -190,7 +200,8 @@ def view_logs():
 @app.route('/end-quiz')
 def end_quiz():
     game_state = get_game_state()
-    return render_template('quiz.html', game_state=game_state, game_ended=True)
+    valid_words = list(load_valid_words())
+    return render_template('quiz.html', game_state=game_state, valid_words=valid_words, game_ended=True)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
