@@ -125,8 +125,8 @@ lessons = [
      "image": "lesson-9.png"},
     
     {"id": 10,
-     "title": "Try to find the pangram! (Reveal the flashcards for the answer)",
-     "data": "How could I have approached this? First: Finding the suffix -TION! Now what letters are left? (s,u,l). From this, I found SOLUTION! Think about common prefixes and suffixes: il-, un-, non-, -ist are all present.",
+     "title": "Pre-Quiz - Find the Pangram!",
+     "data": "A pangram is a word that uses all letters from the honeycomb. Finding the pangram is one of the most satisfying parts of playing Spelling Bee!",
      "image": None},
 ]
 

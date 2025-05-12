@@ -5,40 +5,60 @@
     <h2 class="lesson-title">{{ lesson_data.id }}. {{ lesson_data.title|default('Spelling Bee Guide') }}</h2>
 
     <div class="content-row">
-        {% if lesson_data.id|int > 2 and lesson_data.id|int <= 10 %}
-            {% if lesson_data.id|int == 10 %}
-            <div class="hex-pattern">
-                <div class="hex-row">
-                    <div class="hex">S</div>
-                    <div class="hex">L</div>
-                </div>
-                <div class="hex-row">
-                    <div class="hex">O</div>
-                    <div class="hex center-hex">U</div>
-                    <div class="hex">T</div>
-                </div>
-                <div class="hex-row">
-                    <div class="hex">I</div>
-                    <div class="hex">N</div>
-                </div>
+        {% if lesson_data.id|int == 10 %}
+        <div class="hex-pattern">
+            <div class="hex-row">
+                <div class="hex">U</div>
+                <div class="hex">N</div>
             </div>
-            {% else %}
-            <div class="hex-pattern">
-                <div class="hex-row">
-                    <a href="/learn/3" class="hex">3</a>
-                    <a href="/learn/4" class="hex">4</a>
-                </div>
-                <div class="hex-row">
-                    <a href="/learn/5" class="hex">5</a>
-                    <a href="/learn/6" class="hex">6</a>
-                    <a href="/learn/7" class="hex">7</a>
-                </div>
-                <div class="hex-row">
-                    <a href="/learn/8" class="hex">8</a>
-                    <a href="/learn/9" class="hex">9</a>
-                </div>
+            <div class="hex-row">
+                <div class="hex">O</div>
+                <div class="hex center-hex">B</div>
+                <div class="hex">X</div>
             </div>
-            {% endif %}
+            <div class="hex-row">
+                <div class="hex">I</div>
+                <div class="hex">G</div>
+            </div>
+        </div>
+        
+        <div class="puzzle-container">
+            <div class="input-prompt">
+                <p>Try to find the pangram - a word that uses all letters in the honeycomb.</p>
+                <input type="text" id="pangram-input" placeholder="Enter your answer here...">
+                <p class="hint">Hint: Think about word suffixes and work from there.</p>
+                <button id="check-answer" class="answer-button">Check Answer</button>
+                <button id="show-solution" class="solution-button">Show Solution</button>
+                <p id="feedback-message" class="feedback"></p>
+            </div>
+            <div id="solution-explanation" class="solution-content hidden">
+                <h3>Pangram Solution: UNBOXING</h3>
+                <p>The pangram is "UNBOXING" - the process of taking something out of its box.</p>
+                <p>How to approach solving this:</p>
+                <ol>
+                    <li>Look for common word endings: -ING is a very productive suffix</li>
+                    <li>Consider prefixes like UN- that can combine with verbs</li>
+                    <li>Try combinations: UN + BOX + ING = UNBOXING</li>
+                </ol>
+                <p>Finding pangrams in Spelling Bee often requires identifying common word patterns and combining prefixes and suffixes with root words.</p>
+            </div>
+        </div>
+        {% elif lesson_data.id|int > 2 and lesson_data.id|int < 10 %}
+        <div class="hex-pattern">
+            <div class="hex-row">
+                <a href="/learn/3" class="hex">3</a>
+                <a href="/learn/4" class="hex">4</a>
+            </div>
+            <div class="hex-row">
+                <a href="/learn/5" class="hex">5</a>
+                <a href="/learn/6" class="hex">6</a>
+                <a href="/learn/7" class="hex">7</a>
+            </div>
+            <div class="hex-row">
+                <a href="/learn/8" class="hex">8</a>
+                <a href="/learn/9" class="hex">9</a>
+            </div>
+        </div>
         {% endif %}
 
         {% if lesson_data["id"] == 2 %}
@@ -64,10 +84,10 @@
                 </div>
             </div>
         </div>
-    {% endif %}    
+        {% endif %}    
         
         <!-- Replace the standard lesson-text with our interactive content -->
-        {% if lesson_data["id"] != 2 %}
+        {% if lesson_data["id"] != 2 and lesson_data["id"] != 10 %}
         <div class="lesson-content">
             {{ lesson_data.data }}
         </div>
@@ -88,7 +108,7 @@
         {% if next_lesson %}
         <a href="/learn/{{next_lesson}}" class="nav-button">Next</a>
         {% else %}
-        <a href="/quiz" class="nav-button">Take Quiz</a>
+        <a href="/" class="nav-button">Home</a>
         {% endif %}
     </div>
 </div>
@@ -152,8 +172,8 @@
     transform: scale(1.1);
 }
 
-/* Only the hexagon numbered 4 (second hex in the second row) is yellow */
-.hex-row:nth-child(2) .hex:nth-child(2) {
+/* Center hexagon (B) is yellow */
+.center-hex {
     background-color: #ffd700;
 }
 
@@ -209,6 +229,87 @@
 
 .learn-container {
     animation: fadeIn 0.6s ease;
+}
+
+/* Puzzle container styles */
+.puzzle-container {
+    max-width: 600px;
+    min-width: 300px;
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-prompt {
+    margin-bottom: 20px;
+}
+
+#pangram-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.hint {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.answer-button, .solution-button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: lightblue;
+    border: 2px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.answer-button:hover, .solution-button:hover {
+    background-color: #add8e6;
+    transform: scale(1.05);
+}
+
+.solution-button {
+    background-color: #f0f0f0;
+}
+
+.feedback {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 20px;
+}
+
+.solution-content {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    border-left: 4px solid #ffd700;
+}
+
+.solution-content h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.correct {
+    color: #4CAF50;
+}
+
+.incorrect {
+    color: #f44336;
 }
 
 /* Responsive adjustments */
@@ -278,6 +379,136 @@
   background-color: #ffd700;
   transform: rotateY(180deg);
 }
-
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on lesson 10
+    if (document.querySelector('.lesson-title') && 
+        document.querySelector('.lesson-title').textContent.includes('10.')) {
+        
+        const pangram = 'unboxing';
+        const checkButton = document.getElementById('check-answer');
+        const showSolutionButton = document.getElementById('show-solution');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const solutionExplanation = document.getElementById('solution-explanation');
+        const input = document.getElementById('pangram-input');
+        
+        // Check answer button functionality
+        checkButton.addEventListener('click', function() {
+            const userAnswer = input.value.toLowerCase().trim();
+            
+            if (userAnswer === pangram) {
+                feedbackMessage.textContent = 'Correct! UNBOXING is the pangram!';
+                feedbackMessage.className = 'feedback correct';
+                solutionExplanation.classList.remove('hidden');
+            } else {
+                feedbackMessage.textContent = 'That\'s not the pangram. Try again!';
+                feedbackMessage.className = 'feedback incorrect';
+            }
+        });
+        
+        // Show solution button functionality
+        showSolutionButton.addEventListener('click', function() {
+            solutionExplanation.classList.remove('hidden');
+            feedbackMessage.textContent = 'The pangram is UNBOXING.';
+            feedbackMessage.className = 'feedback';
+            input.value = pangram;
+        });
+        
+        // Submit on Enter key press
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkButton.click();
+            }
+        });
+    }
+    
+    // if we're on a learn page with lesson-content, we engage interactivity
+    if (document.querySelector('.lesson-content')) {
+        createInteractiveElements();
+    }
+});
+
+function createInteractiveElements() {
+    const lessonContent = document.querySelector('.lesson-content');
+    if (!lessonContent) return;
+    
+    const lessonText = lessonContent.textContent.trim();
+    
+    lessonContent.innerHTML = '';
+    
+    // we separate content for cards via . delimiter splits
+    const sentences = lessonText.split('.').filter(sentence => sentence.trim().length > 0);
+    
+    // cards + container for each sentence
+    const cardsContainer = document.createElement('div');
+    cardsContainer.className = 'interactive-cards';
+
+    sentences.forEach((sentence, index) => {
+        const card = document.createElement('div');
+        card.className = 'interactive-card';
+        card.setAttribute('data-index', index);
+        
+        // Add number to card
+        const number = document.createElement('div');
+        number.className = 'card-number';
+        number.textContent = index + 1;
+        number.style.position = 'absolute';
+        number.style.top = '8px';
+        number.style.left = '12px';
+        number.style.fontWeight = 'bold';
+        number.style.background = 'rgba(255,255,255,0.8)';
+        number.style.borderRadius = '50%';
+        number.style.width = '24px';
+        number.style.height = '24px';
+        number.style.display = 'flex';
+        number.style.alignItems = 'center';
+        number.style.justifyContent = 'center';
+        number.style.zIndex = '2';
+        
+        // making hexagon
+        const icon = document.createElement('div');
+        icon.className = 'card-icon';
+        icon.innerHTML = '<svg viewBox="0 0 100 100"><polygon points="50 0, 93.3 25, 93.3 75, 50 100, 6.7 75, 6.7 25" fill="gold" stroke="black" /></svg>';
+        
+        // card content + content goes into card
+        const content = document.createElement('div');
+        content.className = 'card-content';
+        content.textContent = sentence.trim() + '.';
+        // content is hidden by default, shown on hover
+        content.style.opacity = '0';
+        content.style.transition = 'opacity 0.3s';
+        content.style.pointerEvents = 'none';
+        
+        card.appendChild(number);
+        card.appendChild(icon);
+        card.appendChild(content);
+        cardsContainer.appendChild(card);
+        
+        // on hover
+        card.addEventListener('mouseenter', function() {
+            content.style.opacity = '1';
+        });
+        
+        // off hover
+        card.addEventListener('mouseleave', function() {
+            content.style.opacity = '0';
+        });
+        
+        // on click
+        card.addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelectorAll('.interactive-card.active').forEach(activeCard => {
+                if (activeCard !== this) {
+                    activeCard.classList.remove('active');
+                }
+            });
+        });
+    });
+    
+    // cards container goes to the lesson content
+    lessonContent.appendChild(cardsContainer);
+}
+</script>
 {% endblock %}
