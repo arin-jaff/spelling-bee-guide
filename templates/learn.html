@@ -24,11 +24,12 @@
         
         <div class="puzzle-container">
             <div class="input-prompt">
-                <p>Try to find the pangram - a word that uses all letters in the honeycomb.</p>
+                <p>Try to find the pangram - a word that uses all letters in the honeycomb. 
+                    <strong>Find the solution, then take the quiz!</strong> </p>
                 <input type="text" id="pangram-input" placeholder="Enter your answer here...">
                 <p class="hint">Hint: Think about word suffixes and work from there.</p>
                 <button id="check-answer" class="answer-button">Check Answer</button>
-                <button id="show-solution" class="solution-button">Show Solution</button>
+                <button id="toggle-solution" class="solution-button">Show Solution</button>
                 <p id="feedback-message" class="feedback"></p>
             </div>
             <div id="solution-explanation" class="solution-content hidden">
@@ -36,11 +37,15 @@
                 <p>The pangram is "UNBOXING" - the process of taking something out of its box.</p>
                 <p>How to approach solving this:</p>
                 <ol>
-                    <li>Look for common word endings: -ING is a very productive suffix</li>
-                    <li>Consider prefixes like UN- that can combine with verbs</li>
-                    <li>Try combinations: UN + BOX + ING = UNBOXING</li>
+                    <li>Look for common word endings: -ING is a very productive suffix that can be added to many verbs.</li>
+                    <li>Consider prefixes like UN- that can combine with verbs to create new words with opposite meanings.</li>
+                    <li>Try combinations: UN + BOX + ING = UNBOXING (the process of removing items from packaging).</li>
                 </ol>
                 <p>Finding pangrams in Spelling Bee often requires identifying common word patterns and combining prefixes and suffixes with root words.</p>
+                
+                <div class="quiz-button-container">
+                    <a href="/quiz" class="quiz-button">Take the Quiz!</a>
+                </div>
             </div>
         </div>
         {% elif lesson_data.id|int > 2 and lesson_data.id|int < 10 %}
@@ -221,6 +226,34 @@
     transform: scale(1.05);
 }
 
+/* Quiz button styling */
+.quiz-button-container {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.quiz-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #ffd700;
+    border: 2px solid black;
+    text-decoration: none;
+    color: black;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.quiz-button:hover {
+    background-color: #ffed4a;
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    text-decoration: none;
+    color: black;
+}
+
 /* animation for load */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -298,6 +331,17 @@
 .solution-content h3 {
     color: #333;
     margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.solution-content ol {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 25px;
+}
+
+.solution-content li {
+    margin-bottom: 8px;
 }
 
 .hidden {
@@ -310,6 +354,14 @@
 
 .incorrect {
     color: #f44336;
+}
+
+.getting-close {
+    color: #ffc107;
+    background-color: #fff9e6;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 4px solid #ffc107;
 }
 
 /* Responsive adjustments */
@@ -388,11 +440,26 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.lesson-title').textContent.includes('10.')) {
         
         const pangram = 'unboxing';
+        const partialWords = ['box', 'boxing', 'unbox']; // Words that are close
         const checkButton = document.getElementById('check-answer');
-        const showSolutionButton = document.getElementById('show-solution');
+        const toggleSolutionButton = document.getElementById('toggle-solution');
         const feedbackMessage = document.getElementById('feedback-message');
         const solutionExplanation = document.getElementById('solution-explanation');
         const input = document.getElementById('pangram-input');
+        
+        // Toggle solution button functionality
+        toggleSolutionButton.addEventListener('click', function() {
+            if (solutionExplanation.classList.contains('hidden')) {
+                solutionExplanation.classList.remove('hidden');
+                toggleSolutionButton.textContent = 'Hide Solution';
+                feedbackMessage.textContent = 'The pangram is UNBOXING.';
+                feedbackMessage.className = 'feedback';
+            } else {
+                solutionExplanation.classList.add('hidden');
+                toggleSolutionButton.textContent = 'Show Solution';
+                feedbackMessage.textContent = '';
+            }
+        });
         
         // Check answer button functionality
         checkButton.addEventListener('click', function() {
@@ -402,18 +469,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 feedbackMessage.textContent = 'Correct! UNBOXING is the pangram!';
                 feedbackMessage.className = 'feedback correct';
                 solutionExplanation.classList.remove('hidden');
+                toggleSolutionButton.textContent = 'Hide Solution';
+            } else if (partialWords.includes(userAnswer)) {
+                // Custom hints for partial words
+                feedbackMessage.textContent = 'Close! Think about adding prefixes/suffixes to this word.';
+                feedbackMessage.className = 'feedback getting-close';
             } else {
                 feedbackMessage.textContent = 'That\'s not the pangram. Try again!';
                 feedbackMessage.className = 'feedback incorrect';
             }
-        });
-        
-        // Show solution button functionality
-        showSolutionButton.addEventListener('click', function() {
-            solutionExplanation.classList.remove('hidden');
-            feedbackMessage.textContent = 'The pangram is UNBOXING.';
-            feedbackMessage.className = 'feedback';
-            input.value = pangram;
         });
         
         // Submit on Enter key press
