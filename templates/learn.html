@@ -13,7 +13,7 @@
             </div>
             <div class="hex-row">
                 <div class="hex">O</div>
-                <div class="hex center-hex">B</div>
+                <div class="hex center-hex">B</div>x
                 <div class="hex">X</div>
             </div>
             <div class="hex-row">
@@ -105,6 +105,30 @@
         <img src="{{ url_for('static', filename='images/' + lesson_data.image) }}" alt="Lesson {{ lesson_data.id }} illustration" class="lesson-image">
     </div>
     {% endif %}
+
+    {% if lesson_data.exampleimgs %}
+    <div class="example-images-container">
+        {% set img_urls = lesson_data.exampleimgs.split(',') %}
+        
+        {% if lesson_data.exampletext %}
+            {% set alt_texts = lesson_data.exampletext.split(',') %}
+        {% else %}
+            {% set alt_texts = [] %}
+        {% endif %}
+        
+        {% for i in range(img_urls|length) %}
+            <div class="example-image-wrapper">
+                <img src="{{ img_urls[i].strip() }}" alt="Example image for lesson {{ lesson_data.id }}" class="example-image">
+                {% if alt_texts|length > i %}
+                    <div class="example-image-overlay">{{ alt_texts[i].strip() }}</div>
+                {% else %}
+                    <div class="example-image-overlay"></div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>  
+{% endif %}
+
 
     <div class="navigation-buttons">
         {% if prev_lesson %}
@@ -202,6 +226,56 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
+.example-images-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.example-image-wrapper {
+    position: relative;
+    height: 300px; /* consistent height */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.example-image {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Overlay that appears on hover */
+.example-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0); /* transparent by default */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    opacity: 0;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    padding: 10px;
+}
+
+.example-image-wrapper:hover .example-image-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+}
+
 
 .navigation-buttons {
     display: flex;
@@ -549,6 +623,7 @@ function createInteractiveElements() {
         card.appendChild(icon);
         card.appendChild(content);
         cardsContainer.appendChild(card);
+
         
         // on hover
         card.addEventListener('mouseenter', function() {
